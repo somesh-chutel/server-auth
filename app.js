@@ -9,6 +9,7 @@ const cors = require('cors')
 const app = express();
 app.use(express.json());
 app.use(cors());
+const port = process.env.PORT || 9001;
 
 const dbPath = path.join(__dirname,"goodreads.db");
 
@@ -20,8 +21,8 @@ const initializeServerAndDb = async (req,res)=>{
       filename : dbPath,
       driver : sqlite3.Database
     })
-    app.listen(3005,()=>{
-      console.log("Server started at port 3005")
+    app.listen(port,()=>{
+      console.log(`Server started at port ${port}`)
     })
   } catch (error) {
     console.log(error.message);
